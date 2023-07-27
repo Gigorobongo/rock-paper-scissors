@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock Paper Scissors Game</title>
+</head>
+<body>
+    <script>
+        //Create a getComputerChoice function that retunr a random number generator from 1 to 3.
+            //If it's 1 return Rock, if it's 2 return Paper, if it's 3 return scissors.
+        function getComputerChoice() {
+            let randomNum = Math.floor(Math.random() * 3) + 1;
+            
+            if(randomNum === 1) {
+                return 'Rock';
+            } else if(randomNum === 2) {
+                return 'Paper';
+            } else {
+                return 'Scissors';
+            }
+        }
+        console.log(getComputerChoice());
+        
+
+
+        //Create a function that takes 2 parameters: computerSelection and playerSelection.
+            //If playerSelection === Rock and computerSelection === Paper ---> return "You lose! Paper beats Rock"
+            //If playerSelection === Paper and computerSelection === Paper ---> return "You lose! Paper beats Rock"
+
+
+    </script>   
+</body>
+</html>
