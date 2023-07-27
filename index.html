@@ -7,11 +7,11 @@
 </head>
 <body>
     <script>
-        //Create a getComputerChoice function that retunr a random number generator from 1 to 3.
-            //If it's 1 return Rock, if it's 2 return Paper, if it's 3 return scissors.
+
+        //Create a getComputerChoice function that retunr a random number generator from 1 to 3.           
         function getComputerChoice() {
             let randomNum = Math.floor(Math.random() * 3) + 1;
-            
+            //If it's 1 return Rock, if it's 2 return Paper, if it's 3 return scissors.
             if(randomNum === 1) {
                 return 'Rock';
             } else if(randomNum === 2) {
@@ -20,33 +20,57 @@
                 return 'Scissors';
             }
         }
-        //Create a function that takes 2 parameters: computerSelection and playerSelection.
-            //If playerSelection === Rock and computerSelection === Paper ---> return "You lose! Paper beats Rock"
-            //If playerSelection === Rock and computerSelection === Scissors ---> return "You win! Rock beats Scissors"
-            //If playerSelection === Paper and computerSelection === Scissors ---> return "You lose! Scissors beats Paper"
-            //If playerSelection === Paper and computerSelection === Rock ---> return "You win! Paper beats Rock"
-            //If playerSelection === Scissors and computerSelection === Paper ---> return "You Win! Scissors beats Paper"
-            //If playerSelection === Scissors and computerSelection === Rock ---> return "You lose! Rock beats Scissors"
-            //Else, it's a tie!
+               
+        //Create a function that takes 2 parameters: computerSelection and playerSelection.    
         function playRound(playerSelection, computerSelection) {
+            
+            const youWin =`You win! ${capitalLetter(playerSelection)} beats ${computerSelection}`;
+            const youLose = `You lose! ${computerSelection} beats ${capitalLetter(playerSelection)}`;
 
-            if(playerSelection === 'Rock'.toLowerCase() && computerSelection === 'Paper') {
-                return `You lose! ${computerSelection} beats ${capitalLetter(playerSelection)}`;
-            } else if(playerSelection === 'Rock'.toLowerCase() && computerSelection === 'Scissors') {
-                return `You win! ${capitalLetter(playerSelection)} beats ${computerSelection}`;
-            } else if(playerSelection === 'Paper'.toLowerCase() && computerSelection === 'Scissors') {
-                return `You lose! ${computerSelection} beats ${capitalLetter(playerSelection)}`;
-            } else if(playerSelection === 'Paper'.toLowerCase() && computerSelection === 'Rock') {
-                return `You win! ${capitalLetter(playerSelection)} beats ${computerSelection}`;
-            } else if(playerSelection === 'Scissors'.toLowerCase() && computerSelection === 'Paper') {
-                return `You win! ${capitalLetter(playerSelection)} beats ${computerSelection}`;
-            } else if(playerSelection === 'Scissors'.toLowerCase() && computerSelection === 'Rock') {
-                return `You lose! ${computerSelection} beats ${capitalLetter(playerSelection)}`;
-            } else {
+            if(playerSelection === 'Rock'.toLowerCase() && computerSelection === 'Paper') { //If playerSelection === Rock and computerSelection === Paper ---> return "You lose! Paper beats Rock"
+                return youLose;
+            } else if(playerSelection === 'Rock'.toLowerCase() && computerSelection === 'Scissors') { //If playerSelection === Rock and computerSelection === Scissors ---> return "You win! Rock beats Scissors"
+                return youWin;
+            } else if(playerSelection === 'Paper'.toLowerCase() && computerSelection === 'Scissors') { //If playerSelection === Paper and computerSelection === Scissors ---> return "You lose! Scissors beats Paper"
+                return youLose;
+            } else if(playerSelection === 'Paper'.toLowerCase() && computerSelection === 'Rock') { //If playerSelection === Paper and computerSelection === Rock ---> return "You win! Paper beats Rock"
+                return youWin;
+            } else if(playerSelection === 'Scissors'.toLowerCase() && computerSelection === 'Paper') { //If playerSelection === Scissors and computerSelection === Paper ---> return "You Win! Scissors beats Paper"
+                return youWin;
+            } else if(playerSelection === 'Scissors'.toLowerCase() && computerSelection === 'Rock') { //If playerSelection === Scissors and computerSelection === Rock ---> return "You lose! Rock beats Scissors"
+                return youLose;
+            } else { //Else, it's a tie!
                 return `It's a tie!`;
+            }           
+        }
+
+        //Create a function that run the playRound function 5 times
+        function game() {
+            let playerPoints = 0;
+            let computerPoints = 0;
+            const youWin =`You win! ${capitalLetter(playerSelection)} beats ${computerSelection}`;
+            const youLose = `You lose! ${computerSelection} beats ${capitalLetter(playerSelection)}`;
+            let game = playRound(playerSelection, computerSelection);
+            
+            console.log(game);
+
+            if(game === youWin) {
+                playerPoints += 1;
+            } else if(game === youLose){
+                computerPoints += 1;
+            } else {
+                playerPoints += 0;
+                computerPoints += 0;
             }
+            console.log(`Score: ${playerPoints} - ${computerPoints}`);
             
         }
+        //each time the function is ran 1 point is assigned to the winner
+        //If playerPoints > computerPoints ---> 'You win the bo5' ---> else 'You lost the bo5'
+
+
+
+
         //Create function to make the first letter Capital
         function capitalLetter() {
             let str = playerSelection;
@@ -54,15 +78,18 @@
             return value;
         }
         
+        //Create function to Prompt player selection
+        
        
         
         //Testing below
-        let playerSelection = 'scissors'.toLowerCase();
-        
+        //Assign the playerSelection variable to a prompt function
+        let playerSelection = window.prompt('Round 1');
         let computerSelection = getComputerChoice();
         console.log(`Player selection: ${capitalLetter(playerSelection)}`);
         console.log(`Computer selection: ${computerSelection}`);
-        console.log(playRound(playerSelection, computerSelection));
+        //console.log(playRound(playerSelection, computerSelection));
+        console.log(game());
         
 
     </script>   
