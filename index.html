@@ -24,8 +24,8 @@
         //Create a function that takes 2 parameters: computerSelection and playerSelection.    
         function playRound(playerSelection, computerSelection) {
             
-            const youWin =`You win! ${capitalLetter(playerSelection)} beats ${computerSelection}`;
-            const youLose = `You lose! ${computerSelection} beats ${capitalLetter(playerSelection)}`;
+            const youWin =`You win! ${makeCapitalLetter(playerSelection)} beats ${computerSelection}`;
+            const youLose = `You lose! ${computerSelection} beats ${makeCapitalLetter(playerSelection)}`;
 
             if(playerSelection === 'Rock'.toLowerCase() && computerSelection === 'Paper') { //If playerSelection === Rock and computerSelection === Paper ---> return "You lose! Paper beats Rock"
                 return youLose;
@@ -46,13 +46,13 @@
 
         
         function game() {
-            const youWin =`You win! ${capitalLetter(playerSelection)} beats ${computerSelection}`;
-            const youLose = `You lose! ${computerSelection} beats ${capitalLetter(playerSelection)}`;
+            const youWin =`You win! ${makeCapitalLetter(playerSelection)} beats ${computerSelection}`;
+            const youLose = `You lose! ${computerSelection} beats ${makeCapitalLetter(playerSelection)}`;
             
 
-            playRound(playerSelection, computerSelection);
+            playRound(playerSelection, computerSelection); //Create a function that run the playRound function
 
-            if(playRound(playerSelection, computerSelection) === youWin) {
+            if(playRound(playerSelection, computerSelection) === youWin) { //each time the function is ran 1 point is assigned to the winner
                 playerPoints++;
                 return `${youWin} || Score: ${playerPoints} - ${computerPoints}`;
             } else if(playRound(playerSelection, computerSelection) === youLose) {
@@ -64,21 +64,27 @@
                 return `It's a tie! || Score: ${playerPoints} - ${computerPoints}`;
             }        
         }
-        //Create a function that run the playRound function 5 times 
-        //each time the function is ran 1 point is assigned to the winner
-        //If playerPoints > computerPoints ---> 'You win the bo5' ---> else 'You lost the bo5'
+         
+        
+        
 
 
 
 
         //Create function to make the first letter Capital
-        function capitalLetter() {
+        function makeCapitalLetter() {
             let str = playerSelection;
             let value = str.charAt(0).toUpperCase() + str.slice(1);
             return value;
         }
         
-        
+        function startNewRound(round) {
+            playerSelection = window.prompt(`Round ${round}`);
+            computerSelection = getComputerChoice();
+            console.log(`Player selection: ${makeCapitalLetter(playerSelection)}`);
+            console.log(`Computer selection: ${computerSelection}`);
+            return game();
+        }
         
        
         
@@ -87,40 +93,24 @@
         let computerPoints = 0;
         let playerSelection = window.prompt('Round 1'); //Assign the playerSelection variable to a prompt function
         let computerSelection = getComputerChoice();
-        console.log(`Player selection: ${capitalLetter(playerSelection)}`);
+        console.log(`Player selection: ${makeCapitalLetter(playerSelection)}`);
         console.log(`Computer selection: ${computerSelection}`);
         console.log(game());
+
+        console.log(startNewRound(2));
+        console.log(startNewRound(3));
+        console.log(startNewRound(4));
+        console.log(startNewRound(5));
         
-        playerSelection = window.prompt('Round 2');
-        computerSelection = getComputerChoice();
-        console.log(`Player selection: ${capitalLetter(playerSelection)}`);
-        console.log(`Computer selection: ${computerSelection}`);
-        console.log(game());
+        
 
-        playerSelection = window.prompt('Round 3');
-        computerSelection = getComputerChoice();
-        console.log(`Player selection: ${capitalLetter(playerSelection)}`);
-        console.log(`Computer selection: ${computerSelection}`);
-        console.log(game());
-
-        playerSelection = window.prompt('Round 4');
-        computerSelection = getComputerChoice();
-        console.log(`Player selection: ${capitalLetter(playerSelection)}`);
-        console.log(`Computer selection: ${computerSelection}`);
-        console.log(game());
-
-        playerSelection = window.prompt('Round 5');
-        computerSelection = getComputerChoice();
-        console.log(`Player selection: ${capitalLetter(playerSelection)}`);
-        console.log(`Computer selection: ${computerSelection}`);
-        console.log(game());
-
+        //If playerPoints > computerPoints ---> 'You win the bo5' ---> else 'You lost the bo5'
         if(playerPoints > computerPoints) {
-            console.log('You win!');
+            alert('You win!');
         } else if(playerPoints < computerPoints) {
-            console.log('You lose!');
+            alert('You lose!');
         } else {
-            console.log('It\'s a tie');
+            alert('It\'s a tie');
         }
         
         
